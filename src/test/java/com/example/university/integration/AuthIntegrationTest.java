@@ -38,7 +38,7 @@ class AuthIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.accessToken").isNotEmpty())
                 .andExpect(jsonPath("$.tokenType").value("Bearer"))
-                .andExpect(jsonPath("$.expiresIn").value(3599))
+                .andExpect(jsonPath("$.expiresIn").value(3600))
                 .andExpect(jsonPath("$.user.username").value("admin"))
                 .andExpect(jsonPath("$.user.role").value("ADMIN"))
                 .andExpect(jsonPath("$.user.password").doesNotExist())
