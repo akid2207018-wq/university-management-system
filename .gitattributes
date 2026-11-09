@@ -1,0 +1,12 @@
+* text=auto
+
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.jar binary
+
+mvnw text eol=lf
+mvnw.cmd text eol=crlf
+*.sh text eol=lf

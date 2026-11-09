@@ -1,0 +1,26 @@
+﻿services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: universitydb
+      POSTGRES_USER: university
+      POSTGRES_PASSWORD: university
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/universitydb
+      SPRING_DATASOURCE_USERNAME: university
+      SPRING_DATASOURCE_PASSWORD: university
+      JWT_SECRET: local-dev-secret-key-change-this-1234567890
+      JWT_EXPIRATION_MS: 3600000
+    ports:
+      - "8080:8080"
+
+volumes:
+  pgdata:

@@ -1,0 +1,56 @@
+spring:
+  application:
+    name: university-management-system
+  datasource:
+    url: jdbc:h2:mem:university;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: false
+  h2:
+    console:
+      enabled: false
+
+server:
+  port: ${PORT:8080}
+  error:
+    include-message: never
+    include-stacktrace: never
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:development-only-jwt-secret-change-me-0123456789abcdef}
+    expiration-ms: ${JWT_EXPIRATION_MS:3600000}
+  bootstrap:
+    enabled: ${BOOTSTRAP_ENABLED:true}
+    admin:
+      username: ${BOOTSTRAP_ADMIN_USERNAME:admin}
+      password: ${BOOTSTRAP_ADMIN_PASSWORD:ChangeMe123!}
+      full-name: ${BOOTSTRAP_ADMIN_FULL_NAME:University Administrator}
+      email: ${BOOTSTRAP_ADMIN_EMAIL:admin@university.example}
+    teacher:
+      username: ${BOOTSTRAP_TEACHER_USERNAME:teacher}
+      password: ${BOOTSTRAP_TEACHER_PASSWORD:ChangeMe123!}
+      full-name: ${BOOTSTRAP_TEACHER_FULL_NAME:Sample Teacher}
+      email: ${BOOTSTRAP_TEACHER_EMAIL:teacher@university.example}
+    student:
+      username: ${BOOTSTRAP_STUDENT_USERNAME:student}
+      password: ${BOOTSTRAP_STUDENT_PASSWORD:ChangeMe123!}
+      full-name: ${BOOTSTRAP_STUDENT_FULL_NAME:Sample Student}
+      email: ${BOOTSTRAP_STUDENT_EMAIL:student@university.example}
